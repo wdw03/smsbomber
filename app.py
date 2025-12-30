@@ -578,12 +578,22 @@ def send_otp(phone_number):
         
         # Run async function
         try:
-            loop = asyncio.get_event_loop()
-        except RuntimeError:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-        
-        result = loop.run_until_complete(send_otp_requests(phone_number, ip_address, rounds))
+            try:
+                loop = asyncio.get_event_loop()
+                if loop.is_closed():
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+            except RuntimeError:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+            
+            result = loop.run_until_complete(send_otp_requests(phone_number, ip_address, rounds))
+        except Exception as e:
+            return jsonify({
+                "success": False,
+                "error": f"Failed to send OTP requests: {str(e)}",
+                "phone": phone_number
+            }), 500
         
         return jsonify({
             "success": True,
