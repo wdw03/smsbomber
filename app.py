@@ -577,10 +577,13 @@ def send_otp(phone_number):
             rounds = 1
         
         # Run async function
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        
         result = loop.run_until_complete(send_otp_requests(phone_number, ip_address, rounds))
-        loop.close()
         
         return jsonify({
             "success": True,
