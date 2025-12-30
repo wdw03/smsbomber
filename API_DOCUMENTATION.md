@@ -24,7 +24,7 @@ Get API information and available endpoints.
     "/send/<phone_number>": "Send OTP to phone number (10 digits without +91)",
     "/send?phone=<phone_number>": "Send OTP via query parameter"
   },
-  "example": "/send/8789977777"
+  "example": "/send/9876543210"
 }
 ```
 
@@ -37,22 +37,22 @@ Send OTP requests to multiple services using phone number in URL path.
 **Endpoint:** `GET/POST /send/<phone_number>`
 
 **URL Parameters:**
-- `phone_number` (required) - 10 digit phone number without country code (e.g., `8789968980`)
+- `phone_number` (required) - 10 digit phone number without country code (e.g., `9876543210`)
 
 **Query Parameters:**
 - `rounds` (optional) - Number of rounds to send OTP (1-10, default: 1)
 
 **Example Request:**
 ```bash
-GET https://web-production-e7e0b.up.railway.app/send/8789968980
-GET https://web-production-e7e0b.up.railway.app/send/8789968980?rounds=2
+GET https://web-production-e7e0b.up.railway.app/send/9876543210
+GET https://web-production-e7e0b.up.railway.app/send/9876543210?rounds=2
 ```
 
 **Example Response (Success):**
 ```json
 {
   "success": true,
-  "phone": "8789968980",
+  "phone": "9876543210",
   "total_apis": 16,
   "success_count": 4,
   "failed_count": 12,
@@ -107,8 +107,8 @@ Send OTP requests using phone number as query parameter.
 
 **Example Request:**
 ```bash
-GET https://web-production-e7e0b.up.railway.app/send?phone=8789968980
-GET https://web-production-e7e0b.up.railway.app/send?phone=8789968980&rounds=1
+GET https://web-production-e7e0b.up.railway.app/send?phone=9876543210
+GET https://web-production-e7e0b.up.railway.app/send?phone=9876543210&rounds=1
 ```
 
 **Response:** Same format as URL parameter endpoint
@@ -122,7 +122,7 @@ GET https://web-production-e7e0b.up.railway.app/send?phone=8789968980&rounds=1
 ```json
 {
   "success": true,
-  "phone": "8789968980",
+  "phone": "9876543210",
   "total_apis": 16,
   "success_count": 4,
   "failed_count": 12,
@@ -217,7 +217,7 @@ GET /send/123
 {
   "success": false,
   "error": "Failed to send OTP requests: <error message>",
-  "phone": "8789968980"
+  "phone": "9876543210"
 }
 ```
 
@@ -251,25 +251,25 @@ The API attempts to send OTPs to multiple services. Each service returns differe
 
 ```bash
 # Send OTP using URL parameter
-curl https://web-production-e7e0b.up.railway.app/send/8789968980
+curl https://web-production-e7e0b.up.railway.app/send/9876543210
 
 # Send OTP using query parameter
-curl "https://web-production-e7e0b.up.railway.app/send?phone=8789968980"
+curl "https://web-production-e7e0b.up.railway.app/send?phone=9876543210"
 
 # Send OTP with multiple rounds
-curl "https://web-production-e7e0b.up.railway.app/send/8789968980?rounds=2"
+curl "https://web-production-e7e0b.up.railway.app/send/9876543210?rounds=2"
 ```
 
 ### JavaScript (Fetch)
 
 ```javascript
 // Using URL parameter
-fetch('https://web-production-e7e0b.up.railway.app/send/8789968980')
+fetch('https://web-production-e7e0b.up.railway.app/send/9876543210')
   .then(response => response.json())
   .then(data => console.log(data));
 
 // Using query parameter
-fetch('https://web-production-e7e0b.up.railway.app/send?phone=8789968980')
+fetch('https://web-production-e7e0b.up.railway.app/send?phone=9876543210')
   .then(response => response.json())
   .then(data => console.log(data));
 ```
@@ -280,13 +280,13 @@ fetch('https://web-production-e7e0b.up.railway.app/send?phone=8789968980')
 import requests
 
 # Using URL parameter
-response = requests.get('https://web-production-e7e0b.up.railway.app/send/8789968980')
+response = requests.get('https://web-production-e7e0b.up.railway.app/send/9876543210')
 data = response.json()
 print(data)
 
 # Using query parameter
 response = requests.get('https://web-production-e7e0b.up.railway.app/send', 
-                       params={'phone': '8789968980', 'rounds': 1})
+                       params={'phone': '9876543210', 'rounds': 1})
 data = response.json()
 print(data)
 ```
@@ -294,7 +294,7 @@ print(data)
 ### Postman
 
 1. **Method:** GET or POST
-2. **URL:** `https://web-production-e7e0b.up.railway.app/send/8789968980`
+2. **URL:** `https://web-production-e7e0b.up.railway.app/send/9876543210`
 3. **Headers:** None required
 4. **Body:** None required
 
@@ -338,7 +338,7 @@ The API integrates with the following services:
 1. **Phone Number Format:**
    - Always use 10 digits without country code
    - Do not include `+91` or any other prefix
-   - Example: `8789968980` ✅ (not `+918789968980` ❌)
+   - Example: `9876543210` ✅ (not `+919876543210` ❌)
 
 2. **Rounds Parameter:**
    - Use `rounds=1` for single attempt
